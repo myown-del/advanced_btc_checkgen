@@ -100,13 +100,7 @@ def bip39(mnemonic_words):
     seed = mobj.to_seed(mnemonic_words)
 
     bip32_root_key_obj = bip32utils.BIP32Key.fromEntropy(seed)
-    bip32_child_key_obj = bip32_root_key_obj.ChildKey(
-        44 + bip32utils.BIP32_HARDEN
-    ).ChildKey(
-        0 + bip32utils.BIP32_HARDEN
-    ).ChildKey(
-        0 + bip32utils.BIP32_HARDEN
-    ).ChildKey(0).ChildKey(0)
+    bip32_child_key_obj = bip32_root_key_obj.ChildKey(44 + bip32utils.BIP32_HARDEN).ChildKey(0 + bip32utils.BIP32_HARDEN).ChildKey(0 + bip32utils.BIP32_HARDEN).ChildKey(0).ChildKey(0)
 
     return bip32_child_key_obj.Address()
 
@@ -117,12 +111,10 @@ def check():
         addy = bip39(mnemonic_words)
         balance = getBalance(addy)
         with lock:
-            print(
-                f'Address: {addy} | Balance: {balance} | Mnemonic phrase: {mnemonic_words}')
+            print(f'Address: {addy} | Balance: {balance} | Mnemonic phrase: {mnemonic_words}')
         if balance > 0:
             with open('results/wet.txt', 'a') as w:
-                w.write(
-                    f'Address: {addy} | Balance: {balance} | Mnemonic phrase: {mnemonic_words}\n')
+                w.write(f'Address: {addy} | Balance: {balance} | Mnemonic phrase: {mnemonic_words}\n')
 
 
 def helpText():
