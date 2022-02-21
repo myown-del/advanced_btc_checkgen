@@ -25,7 +25,7 @@ def userInput():
 def getInternet():
     try:
         try:
-            requests.get('http://216.58.192.142')#google.cock
+            requests.get('http://216.58.192.142')#google.com
         except requests.ConnectTimeout:
             requests.get('http://1.1.1.1')
         return True
